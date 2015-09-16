@@ -62,7 +62,6 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 			task.setCurrentStage(dbCursor.getString(3));
 			task.setId(dbCursor.getInt(0));
 			task.setTaskImage(dbCursor.getBlob(4));
-			// yet to add tags
 			task.setDeadline(dbCursor.getString(6));
 			task.setEndDate(dbCursor.getString(7));
 		}
@@ -94,33 +93,37 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	public boolean addTask(Task task) {
-		SQLiteDatabase db = getWritableDatabase();
-		ContentValues values = new ContentValues();
-		values.put(TASK_TABLE_NAME_COLUMNS[1], task.getName());
-		values.put(TASK_TABLE_NAME_COLUMNS[2], task.getDescription());
-		values.put(TASK_TABLE_NAME_COLUMNS[3], task.getCurrentStage());
-		String utilityString = "";
-		if (task.getTaskImage() != null) {
-			utilityString = Base64.encodeToString(task.getTaskImage(),
-					Base64.DEFAULT);
+		try {
+			SQLiteDatabase db = getWritableDatabase();
+			ContentValues values = new ContentValues();
+			values.put(TASK_TABLE_NAME_COLUMNS[1], task.getName());
+			values.put(TASK_TABLE_NAME_COLUMNS[2], task.getDescription());
+			values.put(TASK_TABLE_NAME_COLUMNS[3], task.getCurrentStage());
+			String utilityString = "";
+			if (task.getTaskImage() != null) {
+				utilityString = Base64.encodeToString(task.getTaskImage(),
+						Base64.DEFAULT);
+			}
+			values.put(TASK_TABLE_NAME_COLUMNS[4], utilityString);
+			utilityString = "";
+			if (task.getTaskTag() != null) {
+				utilityString = task.getTaskTag().getId() + "";
+			}
+			values.put(TASK_TABLE_NAME_COLUMNS[5], utilityString);
+			utilityString = "";
+			if (task.getDeadline() != null) {
+				utilityString = task.getDeadline();
+			}
+			values.put(TASK_TABLE_NAME_COLUMNS[6], utilityString);
+			utilityString = "";
+			if (task.getEndDate() != null) {
+				values.put(TASK_TABLE_NAME_COLUMNS[7], utilityString);
+			}
+			db.insert(TASK_TABLE_NAME, null, values);
+			db.close();
+		} catch (Exception e) {
+			return false;
 		}
-		values.put(TASK_TABLE_NAME_COLUMNS[4], utilityString);
-		utilityString = "";
-		if (task.getTaskTag() != null) {
-			utilityString = task.getTaskTag().getId() + "";
-		}
-		values.put(TASK_TABLE_NAME_COLUMNS[5], utilityString);
-		utilityString = "";
-		if (task.getDeadline() != null) {
-			utilityString = task.getDeadline();
-		}
-		values.put(TASK_TABLE_NAME_COLUMNS[6], utilityString);
-		utilityString = "";
-		if (task.getEndDate() != null) {
-			values.put(TASK_TABLE_NAME_COLUMNS[7], utilityString);
-		}
-		db.insert(TASK_TABLE_NAME, null, values);
-		db.close();
 		return true;
 	}
 }

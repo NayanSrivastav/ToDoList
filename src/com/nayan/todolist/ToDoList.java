@@ -1,5 +1,7 @@
 package com.nayan.todolist;
 
+import presenter.GetTaskPresenter;
+import presenter.IGetTaskPresenter;
 import adapter.PagerTestAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -7,12 +9,16 @@ import android.text.Html;
 import android.app.ActionBar;
 
 @SuppressWarnings("deprecation")
-public class ToDoList extends BaseActivity implements ActionBar.TabListener {
+public class ToDoList extends BaseActivity implements ActionBar.TabListener , IHomeView{
 	private ViewPager viewPager;
 	private PagerTestAdapter pagerAdapter;
 	private ActionBar actionBar;
 	// tab titles
 	private String[] tabs = { "Current Tasks", "Archive", "Planned" };
+	IGetTaskPresenter getTaskPresenter;
+	public IGetTaskPresenter getGetTaskPresenter() {
+		return getTaskPresenter;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class ToDoList extends BaseActivity implements ActionBar.TabListener {
 
 			}
 		});
+		getTaskPresenter=new GetTaskPresenter(this);
 	}
 
 	/**
@@ -68,6 +75,18 @@ public class ToDoList extends BaseActivity implements ActionBar.TabListener {
 	@Override
 	public void onTabReselected(android.app.ActionBar.Tab tab,
 			android.app.FragmentTransaction ft) {
+	}
+
+	@Override
+	public void openTask() {
+	}
+
+	@Override
+	public void onSuccess() {
+	}
+
+	@Override
+	public void onFailure() {
 	}
 
 }

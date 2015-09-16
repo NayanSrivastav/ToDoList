@@ -3,95 +3,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:orientation="vertical" >
-
-        <EditText
-            android:id="@+id/task_nm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:inputType="textCapCharacters|textImeMultiLine"
-            android:paddingLeft="10dp" />
-
-        <EditText
-            android:id="@+id/task_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description"
-            android:inputType="textMultiLine"
-            android:paddingLeft="10dp" />
-
-        <TextView
-            android:id="@+id/deadline_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:text="Select Estimated End Date"
-            android:textColor="#009688"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/edt_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="End Date"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
-            android:paddingBottom="10dp"
-            android:text="Set Task Stage"
-            android:textColor="#009688"
-            android:textSize="20sp" />
+        android:paddingBottom="80dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3" >
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/task_nm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="textCapCharacters|textImeMultiLine"
+                android:paddingLeft="10dp" />
+
+            <EditText
+                android:id="@+id/task_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:paddingLeft="10dp" />
 
             <TextView
-                android:id="@+id/stage_assigned"
-                android:layout_width="wrap_content"
+                android:id="@+id/deadline_tv"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="Assigned"
-                android:textColor="#004d40"
-                android:textSize="15sp" />
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Select Estimated End Date"
+                android:textColor="#009688"
+                android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/stage_started"
-                android:layout_width="wrap_content"
+                android:id="@+id/edt_date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="End Date"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:text="Started"
-                android:textColor="#004d40"
-                android:textSize="15sp" />
+                android:paddingBottom="10dp"
+                android:text="Set Task Stage"
+                android:textColor="#009688"
+                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/stage_finished"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Finished"
-                android:textColor="#004d40"
-                android:textSize="15sp" />
+                android:orientation="horizontal"
+                android:weightSum="3" >
+
+                <TextView
+                    android:id="@+id/stage_assigned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Assigned"
+                    android:textColor="#004d40"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/stage_started"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Started"
+                    android:textColor="#004d40"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/stage_finished"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Finished"
+                    android:textColor="#004d40"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/create_task_btn"

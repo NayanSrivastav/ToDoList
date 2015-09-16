@@ -15,13 +15,31 @@ public class HomeActivity extends BaseActivity implements IHomeView {
 		startActivity(intent);
 	}
 
-	@Override
-	public void openTask() {
-
-	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		return super.onCreateOptionsMenu(menu);
 	}
+
+
+	@Override
+	public void openTask() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onSuccess() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onFailure() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

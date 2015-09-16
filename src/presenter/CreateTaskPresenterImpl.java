@@ -4,6 +4,7 @@ import java.util.Map;
 
 import interactor.ITaskCreaterInteractor;
 import interactor.TaskCreateInteractorImpl;
+import android.app.Activity;
 
 import com.nayan.todolist.IHomeView;
 
@@ -15,7 +16,7 @@ public class CreateTaskPresenterImpl implements ICreateTaskPresenter {
 	public CreateTaskPresenterImpl(IHomeView homeView) {
 		super();
 		this.homeView = homeView;
-		taskCreateInteractor = new TaskCreateInteractorImpl();
+		taskCreateInteractor = new TaskCreateInteractorImpl(this);
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class CreateTaskPresenterImpl implements ICreateTaskPresenter {
 		if (data.containsKey("taskName")) {
 			if (data.get("taskName").length() > 0) {
 				if (data.containsKey("desc") && data.get("desc").length() > 0) {
-					taskCreateInteractor.createTask(data);
+					taskCreateInteractor.createTask(data, (Activity)homeView);
 				}
 			}
 		}
@@ -32,14 +33,17 @@ public class CreateTaskPresenterImpl implements ICreateTaskPresenter {
 
 	@Override
 	public void onSuccess() {
+		homeView.onSuccess();
 	}
 
 	@Override
 	public void onFailure() {
+		homeView.onFailure();
 	}
 
 	@Override
 	public void onDataError() {
+		homeView.onFailure();
 	}
 
 }

@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TaskActivity extends BaseActivity implements IHomeView,
 		OnClickListener {
@@ -92,6 +93,16 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 				taskStages[0].setText(stages[0]);
 			}
 		}
+	}
+
+	@Override
+	public void onSuccess() {
+		onBackPressed();
+	}
+
+	@Override
+	public void onFailure() {
+		Toast.makeText(this, "some error occured", Toast.LENGTH_LONG).show();
 	}
 
 }
