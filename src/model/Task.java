@@ -3,15 +3,53 @@ package model;
 import java.sql.Blob;
 
 public class Task {
+	private int id;
+	private String name;
+	private String description;
+	private String currentStage;
+	private byte[] taskImage;
+	private TaskTag taskTag;
+	private String deadline;
+	private String endDate;
 
-	String name;
-	String description;
-	String currentStage;
-	Blob taskImage;
-	TaskTag taskTag;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(String deadline) {
+		this.deadline = deadline;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 
 	public Task(String name, String description, String currentStage,
-			Blob taskImage, TaskTag taskTag) {
+			byte[] taskImage, TaskTag taskTag, String deadline, String endDate) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.currentStage = currentStage;
+		this.taskImage = taskImage;
+		this.taskTag = taskTag;
+		this.deadline = deadline;
+		this.endDate = endDate;
+	}
+
+	public Task(String name, String description, String currentStage,
+			byte[] taskImage, TaskTag taskTag) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -21,7 +59,7 @@ public class Task {
 	}
 
 	public Task(String name, String description, String currentStage,
-			Blob taskImage) {
+			byte[] taskImage) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -59,11 +97,11 @@ public class Task {
 		this.currentStage = currentStage;
 	}
 
-	public Blob getTaskImage() {
+	public byte[] getTaskImage() {
 		return taskImage;
 	}
 
-	public void setTaskImage(Blob taskImage) {
+	public void setTaskImage(byte[] taskImage) {
 		this.taskImage = taskImage;
 	}
 

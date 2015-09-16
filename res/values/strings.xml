@@ -5,5 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="Default_task_image">Default task image</string>
+
     <color name="teal">#ffffff</color>
+
+    <string name="title_activity_fragment_test_tab">Tasks</string>
+
 </resources>

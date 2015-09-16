@@ -9,9 +9,8 @@
         android:id="@+id/action_search"
         android:orderInCategory="1"
         android:visible="true"
-        android:actionViewClass="android.widget.ImageButton"
-        android:icon="@drawable/task_demo"
+        android:icon="@drawable/new_task"
         android:showAsAction="ifRoom"
-        android:title="new task"/>
+        android:title="newtask"/>
 
 </menu>
