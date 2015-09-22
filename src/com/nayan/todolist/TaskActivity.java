@@ -24,7 +24,7 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 	private Button createTaskBtn;
 	private EditText taskNameEdt, taskDescEdt;
 	private String selectedStage;
-	private static final String stages[] = { "Assigned", "Started", "Finished" };
+	public static final String stages[] = { "Assigned", "Started", "Finished" };
 	ICreateTaskPresenter taskPresenter;
 
 	@Override

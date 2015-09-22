@@ -86,9 +86,9 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 				// yet to add tags
 				task.setDeadline(dbCursor.getString(6));
 				task.setEndDate(dbCursor.getString(7));
-			} while (dbCursor.moveToFirst());
+			} while (dbCursor.moveToNext());
 		}
-
+		dbCursor.close();
 		return taskList;
 	}
 
@@ -119,7 +119,7 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 			if (task.getEndDate() != null) {
 				values.put(TASK_TABLE_NAME_COLUMNS[7], utilityString);
 			}
-			db.insert(TASK_TABLE_NAME, null, values);
+			int res = (int) db.insert(TASK_TABLE_NAME, null, values);
 			db.close();
 		} catch (Exception e) {
 			return false;
