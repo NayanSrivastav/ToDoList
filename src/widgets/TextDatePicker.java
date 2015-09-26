@@ -9,20 +9,19 @@ import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 
-public class EditTextDatePicker implements OnClickListener, OnDateSetListener {
-	TextView _editText;
+public class TextDatePicker implements OnClickListener, OnDateSetListener {
+	TextView dateTextView;
 	private int _day;
 	private int _month;
 	private int yearSelected;
 	private Context _context;
 
-	public EditTextDatePicker(Context context, int editTextViewID) {
+	public TextDatePicker(Context context, int editTextViewID) {
 		Activity act = (Activity) context;
-		this._editText = (TextView) act.findViewById(editTextViewID);
-		this._editText.setOnClickListener(this);
+		this.dateTextView = (TextView) act.findViewById(editTextViewID);
+		this.dateTextView.setOnClickListener(this);
 		this._context = context;
 	}
 
@@ -39,14 +38,14 @@ public class EditTextDatePicker implements OnClickListener, OnDateSetListener {
 	public void onClick(View v) {
 		DatePickerDialog dialog = new DatePickerDialog(_context, this,
 				Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
+		dialog.getDatePicker().setMinDate(System.currentTimeMillis());
 		dialog.show();
-
 	}
 
-	// updates the date in the birth date EditText
+	// updates the date in the textView
 	private void updateDisplay() {
 
-		_editText.setText(new StringBuilder("Estimated Date is ")
+		dateTextView.setText(new StringBuilder("Estimated Date is ")
 				// Month is 0 based so add 1
 				.append(_day).append("-").append(_month + 1).append("-")
 				.append(yearSelected));

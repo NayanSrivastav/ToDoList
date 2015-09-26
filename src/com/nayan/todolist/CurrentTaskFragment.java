@@ -2,7 +2,11 @@ package com.nayan.todolist;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+
 import model.Task;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,11 +16,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class CurrentTaskFragment extends Fragment implements
 		TaskListFragmentInterface, OnItemClickListener {
 	private ListView taskListView;
+	private TextView txtNoResultFound;
 	List<Task> taskList;
 	List<String> dataArray;
 	ArrayAdapter<String> arrayAdapter;
@@ -27,6 +32,8 @@ public class CurrentTaskFragment extends Fragment implements
 		View rootView = inflater.inflate(R.layout.current_task_fragment,
 				container, false);
 		taskListView = (ListView) rootView.findViewById(R.id.lv_cur_tasks);
+		txtNoResultFound = (TextView) rootView
+				.findViewById(R.id.tv_curren_no_res);
 		return rootView;
 	}
 
@@ -39,12 +46,9 @@ public class CurrentTaskFragment extends Fragment implements
 
 	@Override
 	public void onLoad(String stage) {
-		taskList = ((ToDoList) getActivity()).getTaskPresenter
-				.gettaskList(stage);
-
+			taskList = ((ToDoList) getActivity()).getTaskPresenter
+					.gettaskList(stage);
 		if (taskList == null) {
-			Toast.makeText(getActivity(), "No result found ", Toast.LENGTH_LONG)
-					.show();
 			onNoResult();
 		} else {
 			onSuccess();
@@ -63,7 +67,7 @@ public class CurrentTaskFragment extends Fragment implements
 		}
 		List<String> temp = new ArrayList<String>();
 		for (Task t : taskList) {
-			temp.add("Task Name: " + t.getName() + "\nCurrent Stage: "
+			temp.add("\nTask Name: " + t.getName() + "\nCurrent Stage: "
 					+ t.getCurrentStage() + "\n" + t.getDeadline());
 		}
 		dataArray.addAll(temp);
@@ -71,6 +75,7 @@ public class CurrentTaskFragment extends Fragment implements
 
 	@Override
 	public void onNoResult() {
+		txtNoResultFound.setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -79,17 +84,18 @@ public class CurrentTaskFragment extends Fragment implements
 		if (arrayAdapter == null) {
 			arrayAdapter = new ArrayAdapter<String>(getActivity(),
 					android.R.layout.simple_list_item_1, dataArray);
-			taskListView.setAdapter(arrayAdapter);
-		} else {
-			arrayAdapter.notifyDataSetChanged();
 		}
-		Toast.makeText(getActivity(), "result found " + taskList.size(),
-				Toast.LENGTH_LONG).show();
+		taskListView.setAdapter(arrayAdapter);
 	}
 
+	/**
+	 * pass the selected task information to task history activity
+	 */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		
+		Intent intent = new Intent(getActivity(), TaskHistoryActivity.class);
+		intent.putExtra("taskData", new Gson().toJson(taskList.get(position)));
+		startActivity(intent);
 	}
 }

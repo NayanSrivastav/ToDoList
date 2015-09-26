@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Blob;
 
 public class Task {
 	private int id;

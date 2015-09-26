@@ -3,17 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-<!-- 
+
     <TextView
-        android:id="@+id/tv_top_rated"
+        android:id="@+id/tv_curren_no_res"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="top rated" /> -->
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/no_result"
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/lv_cur_tasks"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:divider="#cfd8dc"
+        android:dividerHeight="5dp" >
     </ListView>
 
 </LinearLayout>

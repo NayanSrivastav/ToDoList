@@ -38,7 +38,7 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="Select Estimated End Date"
-                android:textColor="#009688"
+                android:textColor="#607d8b"
                 android:textSize="20sp" />
 
             <TextView
@@ -56,7 +56,7 @@
                 android:gravity="center_horizontal"
                 android:paddingBottom="10dp"
                 android:text="Set Task Stage"
-                android:textColor="#009688"
+                android:textColor="#607d8b"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -72,7 +72,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="Assigned"
-                    android:textColor="#004d40"
+                    android:textColor="#607d8b"
                     android:textSize="15sp" />
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="Started"
-                    android:textColor="#004d40"
+                    android:textColor="#607d8b"
                     android:textSize="15sp" />
 
                 <TextView
@@ -93,7 +93,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="Finished"
-                    android:textColor="#004d40"
+                    android:textColor="#607d8b"
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
@@ -104,7 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#f44336"
+        android:background="#c62828"
         android:text="Create Task" />
 
 </RelativeLayout>

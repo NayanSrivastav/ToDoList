@@ -1,6 +1,11 @@
 package com.nayan.todolist;
 
+import android.graphics.drawable.ColorDrawable;
+
 public interface TaskListFragmentInterface {
+	public static final ColorDrawable LIST_VIEW_DIVIDER_COLOR_DRAWABLE = new ColorDrawable(
+			android.R.color.secondary_text_light);
+
 	/**
 	 * load the tasks of respective stages into the list on load of fragment
 	 * 

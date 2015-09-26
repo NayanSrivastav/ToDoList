@@ -6,7 +6,8 @@ import java.util.Map;
 
 import presenter.CreateTaskPresenterImpl;
 import presenter.ICreateTaskPresenter;
-import widgets.EditTextDatePicker;
+import widgets.TextDatePicker;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
@@ -34,7 +35,7 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 		super.setContext(this);
 		// controls initialization
 		textViewDeadline = (TextView) findViewById(R.id.deadline_tv);
-		textViewDeadline.setOnClickListener(new EditTextDatePicker(
+		textViewDeadline.setOnClickListener(new TextDatePicker(
 				TaskActivity.this, textViewDeadline.getId()));
 		createTaskBtn = (Button) findViewById(R.id.create_task_btn);
 		taskNameEdt = (EditText) findViewById(R.id.task_nm);
@@ -97,7 +98,10 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 
 	@Override
 	public void onSuccess() {
-		onBackPressed();
+		Intent intent=new Intent(this, ToDoList.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		finish();
+		startActivity(intent);
 	}
 
 	@Override
