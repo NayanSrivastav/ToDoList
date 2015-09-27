@@ -1,6 +1,5 @@
 package com.nayan.todolist;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +19,11 @@ import android.widget.Toast;
 
 public class TaskActivity extends BaseActivity implements IHomeView,
 		OnClickListener {
-	
+
 	private TextView textViewDeadline, taskStages[];
 	private ImageButton createTaskBtn;
 	private EditText taskNameEdt, taskDescEdt;
-	private String selectedStage;
+	private String selectedStage="";
 	public static final String stages[] = { "Assigned", "Started", "Finished" };
 	ICreateTaskPresenter taskPresenter;
 
@@ -44,11 +43,10 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 		taskStages[0] = (TextView) findViewById(R.id.stage_assigned);
 		taskStages[1] = (TextView) findViewById(R.id.stage_started);
 		taskStages[2] = (TextView) findViewById(R.id.stage_finished);
-		taskPresenter=new CreateTaskPresenterImpl(this);
+		taskPresenter = new CreateTaskPresenterImpl(this);
 		// setting events on controls
 		createTaskBtn.setOnClickListener(this);
-		for(int i=0;i<taskStages.length;i++)
-		{
+		for (int i = 0; i < taskStages.length; i++) {
 			taskStages[i].setOnClickListener(this);
 		}
 	}
@@ -56,10 +54,6 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		return false;
-	}
-
-	@Override
-	public void openTask() {
 	}
 
 	@Override
@@ -98,7 +92,7 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 
 	@Override
 	public void onSuccess() {
-		Intent intent=new Intent(this, ToDoList.class);
+		Intent intent = new Intent(this, ToDoList.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		finish();
 		startActivity(intent);
@@ -107,6 +101,26 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 	@Override
 	public void onFailure() {
 		Toast.makeText(this, "some error occured", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onInvalidData(int memberId) {
+		switch (memberId) {
+		case 1:
+			Toast.makeText(this, "Task name is mandatory", Toast.LENGTH_SHORT)
+					.show();
+			break;
+		case 2:
+			Toast.makeText(this, "Task description is mandatory",
+					Toast.LENGTH_SHORT).show();
+			break;
+		case 3:
+			Toast.makeText(this, "Task stage is mandatory", Toast.LENGTH_SHORT)
+					.show();
+			break;
+		default:
+			break;
+		}
 	}
 
 }

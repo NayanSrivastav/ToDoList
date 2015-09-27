@@ -3,10 +3,13 @@ package com.nayan.todolist;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import presenter.ITaskHistoryPressenter;
 import presenter.TaskHistoryPresenter;
 import widgets.TextDatePicker;
+
 import com.google.gson.Gson;
+
 import model.Task;
 import model.TaskHistory;
 import android.app.AlertDialog;
@@ -20,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +40,7 @@ public class TaskHistoryActivity extends BaseActivity implements
 	private TaskHistory taskHistory = null;
 	private boolean isTaskChanged = false;
 	private ProgressDialog progressDialog;
+	ScrollView scrollView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,7 @@ public class TaskHistoryActivity extends BaseActivity implements
 		setContext(this);
 		iTaskHistoryPressenter = new TaskHistoryPresenter(this);
 		// ---------UI elements initialization------------//
+		scrollView = (ScrollView) findViewById(R.id.history_scroll_view);
 		historyListView = (ListView) (findViewById(R.id.his_lv));
 		tvTaskName = (EditText) (findViewById(R.id.task_name_));
 		tvTaskDesc = (EditText) (findViewById(R.id.task_desc_));
@@ -80,6 +86,7 @@ public class TaskHistoryActivity extends BaseActivity implements
 
 		// ---------Load history of task-----------//
 		iTaskHistoryPressenter.loadHistory(task.getId());
+
 	}
 
 	@Override
@@ -170,6 +177,7 @@ public class TaskHistoryActivity extends BaseActivity implements
 		} else {
 			historyAdapter.notifyDataSetChanged();
 		}
+		
 	}
 
 	@Override
@@ -218,4 +226,5 @@ public class TaskHistoryActivity extends BaseActivity implements
 			super.onBackPressed();
 	}
 
+	
 }

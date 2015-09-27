@@ -1084,7 +1084,6 @@ containing a value of this type.
         public static final int task_demo=0x7f02005a;
     }
     public static final class id {
-        public static final int a_h_lv=0x7f090047;
         public static final int a_lv_items_task_name=0x7f09001b;
         public static final int a_lv_items_task_stage=0x7f09001c;
         public static final int a_lv_itrms_task_img=0x7f09001a;
@@ -1124,6 +1123,7 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f090029;
         public static final int expanded_menu=0x7f090030;
         public static final int his_lv=0x7f09004f;
+        public static final int history_scroll_view=0x7f090047;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000a;
         public static final int icon=0x7f09002e;
@@ -1237,15 +1237,14 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030018;
         public static final int abc_simple_decor=0x7f030019;
         public static final int activity_fragment_test_tab=0x7f03001a;
-        public static final int activity_home=0x7f03001b;
-        public static final int activity_task_history=0x7f03001c;
-        public static final int archive_fragment=0x7f03001d;
-        public static final int current_task_fragment=0x7f03001e;
-        public static final int custom_actionbar_view=0x7f03001f;
-        public static final int planned_fragment=0x7f030020;
-        public static final int support_simple_spinner_dropdown_item=0x7f030021;
-        public static final int task=0x7f030022;
-        public static final int task_list_view_item=0x7f030023;
+        public static final int activity_task_history=0x7f03001b;
+        public static final int archive_fragment=0x7f03001c;
+        public static final int current_task_fragment=0x7f03001d;
+        public static final int custom_actionbar_view=0x7f03001e;
+        public static final int planned_fragment=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
+        public static final int task=0x7f030021;
+        public static final int task_list_view_item=0x7f030022;
     }
     public static final class menu {
         public static final int fragment_test_tab=0x7f0c0000;

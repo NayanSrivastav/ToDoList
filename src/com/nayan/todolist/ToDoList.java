@@ -9,13 +9,15 @@ import android.text.Html;
 import android.app.ActionBar;
 
 @SuppressWarnings("deprecation")
-public class ToDoList extends BaseActivity implements ActionBar.TabListener , IHomeView{
+public class ToDoList extends BaseActivity implements ActionBar.TabListener,
+		IHomeView {
 	private ViewPager viewPager;
 	private TaskStageFragmentAdapter pagerAdapter;
 	private ActionBar actionBar;
 	// tab titles
 	private String[] tabs = { "Current Tasks", "Archive", "Planned" };
 	IGetTaskPresenter getTaskPresenter;
+
 	public IGetTaskPresenter getGetTaskPresenter() {
 		return getTaskPresenter;
 	}
@@ -54,7 +56,7 @@ public class ToDoList extends BaseActivity implements ActionBar.TabListener , IH
 
 			}
 		});
-		getTaskPresenter=new GetTaskPresenter(this);
+		getTaskPresenter = new GetTaskPresenter(this);
 	}
 
 	/**
@@ -78,15 +80,16 @@ public class ToDoList extends BaseActivity implements ActionBar.TabListener , IH
 	}
 
 	@Override
-	public void openTask() {
-	}
-
-	@Override
 	public void onSuccess() {
 	}
 
 	@Override
 	public void onFailure() {
+	}
+
+	@Override
+	public void onInvalidData(int memberId) {
+
 	}
 
 }
