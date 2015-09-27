@@ -22,8 +22,8 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +40,8 @@ public class TaskHistoryActivity extends BaseActivity implements
 	private TaskHistory taskHistory = null;
 	private boolean isTaskChanged = false;
 	private ProgressDialog progressDialog;
-	ScrollView scrollView;
+	private LinearLayout taskDetailLayout;
+	private TextView showHistoryTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,8 @@ public class TaskHistoryActivity extends BaseActivity implements
 		setContext(this);
 		iTaskHistoryPressenter = new TaskHistoryPresenter(this);
 		// ---------UI elements initialization------------//
-		scrollView = (ScrollView) findViewById(R.id.history_scroll_view);
+		taskDetailLayout = (LinearLayout) findViewById(R.id.out_ll);
+		showHistoryTextView = (TextView) findViewById(R.id.show_history_textview);
 		historyListView = (ListView) (findViewById(R.id.his_lv));
 		tvTaskName = (EditText) (findViewById(R.id.task_name_));
 		tvTaskDesc = (EditText) (findViewById(R.id.task_desc_));
@@ -83,7 +85,7 @@ public class TaskHistoryActivity extends BaseActivity implements
 			tvTaskDeadline.setOnClickListener(new TextDatePicker(this,
 					tvTaskDeadline.getId()));
 		}
-
+		showHistoryTextView.setOnClickListener(this);
 		// ---------Load history of task-----------//
 		iTaskHistoryPressenter.loadHistory(task.getId());
 
@@ -146,6 +148,27 @@ public class TaskHistoryActivity extends BaseActivity implements
 						}
 					});
 			stageChooser.show();
+		} else if (v.getId() == showHistoryTextView.getId()) {
+			toggleViewVisibility();
+		}
+	}
+
+	private void toggleViewVisibility() {
+		if (historyList == null || historyList.isEmpty()) {
+			Toast.makeText(this, "No history found", Toast.LENGTH_SHORT).show();
+		} else {
+			if (historyListView.getVisibility() == View.VISIBLE) {
+				historyListView.setVisibility(View.GONE);
+				btnSaveChanges.setVisibility(View.VISIBLE);
+				taskDetailLayout.setVisibility(View.VISIBLE);
+				showHistoryTextView.setText("Show Change History");
+			} else {
+				historyListView.setVisibility(View.VISIBLE);
+				btnSaveChanges.setVisibility(View.GONE);
+				taskDetailLayout.setVisibility(View.GONE);
+				showHistoryTextView.setText("Hide Change History");
+	
+			}
 		}
 	}
 
@@ -177,7 +200,7 @@ public class TaskHistoryActivity extends BaseActivity implements
 		} else {
 			historyAdapter.notifyDataSetChanged();
 		}
-		
+
 	}
 
 	@Override
@@ -226,5 +249,4 @@ public class TaskHistoryActivity extends BaseActivity implements
 			super.onBackPressed();
 	}
 
-	
 }

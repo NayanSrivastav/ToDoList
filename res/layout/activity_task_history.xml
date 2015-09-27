@@ -1,114 +1,111 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/history_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="0dp"
+    android:orientation="vertical"
     tools:context="com.nayan.todolist.TaskHistoryActivity" >
 
     <LinearLayout
+        android:id="@+id/out_ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
 
-        <LinearLayout
-            android:id="@+id/out_ll"
+        <EditText
+            android:id="@+id/task_name_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin" >
+            android:hint="Name"
+            android:inputType="textCapCharacters|textImeMultiLine"
+            android:paddingLeft="10dp" />
 
-            <EditText
-                android:id="@+id/task_name_"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Name"
-                android:inputType="textCapCharacters|textImeMultiLine"
-                android:paddingLeft="10dp" />
-
-            <EditText
-                android:id="@+id/task_desc_"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Description"
-                android:inputType="textMultiLine"
-                android:paddingLeft="10dp" />
-
-            <TextView
-                android:id="@+id/deadline_tv_"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:textColor="#607d8b"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/edt_date_"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="End Date"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:paddingBottom="10dp"
-                android:weightSum="2" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="Current Stage"
-                    android:textColor="#607d8b" />
-
-                <TextView
-                    android:id="@+id/stage_assigned_"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="--"
-                    android:textColor="#004d40" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_task_save_changes"
+        <EditText
+            android:id="@+id/task_desc_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#cfd8dc"
-            android:text="Save Changes" />
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:paddingLeft="10dp" />
 
         <TextView
+            android:id="@+id/deadline_tv_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#ffffff"
-            android:gravity="center_horizontal"
-            android:text="Change History" />
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textColor="#607d8b"
+            android:textSize="20sp" />
 
-        <ListView
-            android:scrollbars="none"
-            android:id="@+id/his_lv"
+        <TextView
+            android:id="@+id/edt_date_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#ffffff"
-            android:divider="#cfd8dc"
-            android:dividerHeight="5dp" >
-        </ListView>
+            android:paddingLeft="10dp"
+            android:text="End Date"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:weightSum="2" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Current Stage"
+                android:textColor="#607d8b" />
+
+            <TextView
+                android:id="@+id/stage_assigned_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="--"
+                android:textColor="#004d40" />
+        </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+    <Button
+        android:id="@+id/btn_task_save_changes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#cfd8dc"
+        android:text="Save Changes" />
+
+    <TextView
+        android:id="@+id/show_history_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#cfd8dc"
+        android:gravity="center_horizontal"
+        android:text="Show Change History"
+        android:textSize="20sp" />
+
+    <ListView
+        android:id="@+id/his_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#ffffff"
+        android:divider="#cfd0dc"
+        android:dividerHeight="5dp"
+        android:scrollbars="none"
+        android:visibility="gone" >
+    </ListView>
+
+</LinearLayout>
