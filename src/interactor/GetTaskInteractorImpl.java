@@ -13,5 +13,5 @@ public class GetTaskInteractorImpl implements IGetTaskInteractor {
 		DatabaseHandler dbHandler =new DatabaseHandler(context);
 		return dbHandler.getAllTasks(stage);
 	}
-
+	
 }

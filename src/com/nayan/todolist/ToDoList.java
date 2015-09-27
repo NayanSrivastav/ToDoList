@@ -2,7 +2,7 @@ package com.nayan.todolist;
 
 import presenter.GetTaskPresenter;
 import presenter.IGetTaskPresenter;
-import adapter.PagerTestAdapter;
+import adapter.TaskStageFragmentAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -11,7 +11,7 @@ import android.app.ActionBar;
 @SuppressWarnings("deprecation")
 public class ToDoList extends BaseActivity implements ActionBar.TabListener , IHomeView{
 	private ViewPager viewPager;
-	private PagerTestAdapter pagerAdapter;
+	private TaskStageFragmentAdapter pagerAdapter;
 	private ActionBar actionBar;
 	// tab titles
 	private String[] tabs = { "Current Tasks", "Archive", "Planned" };
@@ -27,7 +27,7 @@ public class ToDoList extends BaseActivity implements ActionBar.TabListener , IH
 		super.setContext(this);
 		viewPager = (ViewPager) findViewById(R.id.view_pager_test);
 		actionBar = getActionBar();
-		pagerAdapter = new PagerTestAdapter(getSupportFragmentManager());
+		pagerAdapter = new TaskStageFragmentAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(pagerAdapter);
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

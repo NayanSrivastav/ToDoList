@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ArchiveTaskFragment extends Fragment implements
@@ -31,8 +30,8 @@ public class ArchiveTaskFragment extends Fragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.current_task_fragment, container,
-				false);
+		View rootView = inflater.inflate(R.layout.current_task_fragment,
+				container, false);
 		taskListView = (ListView) rootView.findViewById(R.id.lv_cur_tasks);
 		txtNoResultFound = (TextView) rootView
 				.findViewById(R.id.tv_curren_no_res);
@@ -48,15 +47,8 @@ public class ArchiveTaskFragment extends Fragment implements
 
 	@Override
 	public void onLoad(String stage) {
-		taskList = ((ToDoList) getActivity()).getTaskPresenter
-				.gettaskList(stage);
-		if (taskList == null) {
-			Toast.makeText(getActivity(), "No result found ", Toast.LENGTH_LONG)
-					.show();
-			onNoResult();
-		} else {
-			onSuccess();
-		}
+		new AsyncGetTasksByStage(stage,
+				((ToDoList) getActivity()).getTaskPresenter, this).execute();
 	}
 
 	/**
@@ -71,30 +63,28 @@ public class ArchiveTaskFragment extends Fragment implements
 		}
 		List<String> temp = new ArrayList<String>();
 		for (Task t : taskList) {
-			temp.add("\nTask Name: " + t.getName()
-					+ "\nCurrent Stage: " + t.getCurrentStage() + "\n"
-					+ t.getDeadline());
+			temp.add("\nTask Name: " + t.getName() + "\nCurrent Stage: "
+					+ t.getCurrentStage() + "\n" + t.getDeadline());
 		}
 		dataArray.addAll(temp);
 	}
 
 	@Override
 	public void onNoResult() {
-		Toast.makeText(getActivity(), "No results found ", Toast.LENGTH_LONG)
-				.show();
+
 		txtNoResultFound.setVisibility(View.VISIBLE);
 	}
 
 	@Override
-	public void onSuccess() {
+	public void onSuccess(List<Task> taskList) {
+		this.taskList = taskList;
 		fillDataArray();
 		if (arrayAdapter == null) {
 			arrayAdapter = new ArrayAdapter<String>(getActivity(),
 					android.R.layout.simple_list_item_1, dataArray);
 		}
 		taskListView.setAdapter(arrayAdapter);
-		Toast.makeText(getActivity(), "result found " + taskList.size(),
-				Toast.LENGTH_LONG).show();
+
 	}
 
 	/**

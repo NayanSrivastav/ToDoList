@@ -2,14 +2,9 @@ package presenter;
 
 import interactor.GetTaskInteractorImpl;
 import interactor.IGetTaskInteractor;
-
 import java.util.List;
-
 import android.app.Activity;
-
 import com.nayan.todolist.IHomeView;
-
-import database.DatabaseHandler;
 import model.Task;
 
 public class GetTaskPresenter implements IGetTaskPresenter {

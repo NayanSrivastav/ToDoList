@@ -18,6 +18,12 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "TaskDB";
 	private static final int version = 1;
 	private static final String TASK_TABLE_NAME = "task";
+	private static final String TASK_HISTORY_TABLE_NAME = "task_history";
+	private static final String[] TASK_TABLE_NAME_COLUMNS = { "id", "name",
+			"description", "currentStage", "taskImage", "taskTag", "deadline",
+			"endDate" };
+	private static final String[] TASK_HISTORY_TABLE_COLUMNS = { "id",
+			"changes", "date" };
 
 	public DatabaseHandler(Context context, String name, CursorFactory factory,
 			int version, DatabaseErrorHandler errorHandler) {
@@ -61,6 +67,12 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
+	/**
+	 * return task by id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Task getTask(int id) {
 		SQLiteDatabase db = getReadableDatabase();
 		Task task = null;
@@ -79,6 +91,12 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 		return task;
 	}
 
+	/**
+	 * returns history of a particular task
+	 * 
+	 * @param taskId
+	 * @return
+	 */
 	@SuppressLint("NewApi")
 	public List<TaskHistory> getHistoryOfTask(int taskId) {
 		SQLiteDatabase db = getReadableDatabase();
@@ -105,6 +123,12 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 		return historyList;
 	}
 
+	/**
+	 * fetches all the tasks that are currently in the specified stage
+	 * 
+	 * @param stage
+	 * @return
+	 */
 	public ArrayList<Task> getAllTasks(String stage) {
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor dbCursor = db.query(true, TASK_TABLE_NAME,
@@ -129,13 +153,6 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 		return taskList;
 	}
 
-	private static final String TASK_HISTORY_TABLE_NAME = "task_history";
-	private static final String[] TASK_TABLE_NAME_COLUMNS = { "id", "name",
-			"description", "currentStage", "taskImage", "taskTag", "deadline",
-			"endDate" };
-	private static final String[] TASK_HISTORY_TABLE_COLUMNS = { "id",
-			"changes", "date" };
-
 	/**
 	 * update the task information and maintain history in history table
 	 * 
@@ -159,6 +176,7 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 			values.put(TASK_HISTORY_TABLE_COLUMNS[0], task.getId() + "");
 			values.put(TASK_HISTORY_TABLE_COLUMNS[1], taskHistory.getChanges());
 			values.put(TASK_HISTORY_TABLE_COLUMNS[2], taskHistory.getDate());
+			db.insert(TASK_HISTORY_TABLE_NAME, null, values);
 			db.setTransactionSuccessful();
 		} catch (Exception e) {
 			return false;
@@ -168,6 +186,12 @@ public final class DatabaseHandler extends SQLiteOpenHelper {
 		return true;
 	}
 
+	/**
+	 * inserts a new task
+	 * 
+	 * @param task
+	 * @return
+	 */
 	public boolean addTask(Task task) {
 		try {
 			SQLiteDatabase db = getWritableDatabase();

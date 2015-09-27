@@ -13,8 +13,8 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +22,7 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 		OnClickListener {
 	
 	private TextView textViewDeadline, taskStages[];
-	private Button createTaskBtn;
+	private ImageButton createTaskBtn;
 	private EditText taskNameEdt, taskDescEdt;
 	private String selectedStage;
 	public static final String stages[] = { "Assigned", "Started", "Finished" };
@@ -37,7 +37,7 @@ public class TaskActivity extends BaseActivity implements IHomeView,
 		textViewDeadline = (TextView) findViewById(R.id.deadline_tv);
 		textViewDeadline.setOnClickListener(new TextDatePicker(
 				TaskActivity.this, textViewDeadline.getId()));
-		createTaskBtn = (Button) findViewById(R.id.create_task_btn);
+		createTaskBtn = (ImageButton) findViewById(R.id.create_task_btn);
 		taskNameEdt = (EditText) findViewById(R.id.task_nm);
 		taskDescEdt = (EditText) findViewById(R.id.task_desc);
 		taskStages = new TextView[3];

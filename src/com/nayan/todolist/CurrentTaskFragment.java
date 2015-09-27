@@ -46,13 +46,8 @@ public class CurrentTaskFragment extends Fragment implements
 
 	@Override
 	public void onLoad(String stage) {
-			taskList = ((ToDoList) getActivity()).getTaskPresenter
-					.gettaskList(stage);
-		if (taskList == null) {
-			onNoResult();
-		} else {
-			onSuccess();
-		}
+		new AsyncGetTasksByStage(stage,
+				((ToDoList) getActivity()).getTaskPresenter, this).execute();
 	}
 
 	/**
@@ -79,7 +74,8 @@ public class CurrentTaskFragment extends Fragment implements
 	}
 
 	@Override
-	public void onSuccess() {
+	public void onSuccess(List<Task> taskList) {
+		this.taskList=taskList;
 		fillDataArray();
 		if (arrayAdapter == null) {
 			arrayAdapter = new ArrayAdapter<String>(getActivity(),

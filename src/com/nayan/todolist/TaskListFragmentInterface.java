@@ -1,5 +1,8 @@
 package com.nayan.todolist;
 
+import java.util.List;
+
+import model.Task;
 import android.graphics.drawable.ColorDrawable;
 
 public interface TaskListFragmentInterface {
@@ -23,5 +26,5 @@ public interface TaskListFragmentInterface {
 	 * specify the event that would take place if task List of respective stage
 	 * is non-empty
 	 */
-	public void onSuccess();
+	public void onSuccess(List<Task> taskList);
 }

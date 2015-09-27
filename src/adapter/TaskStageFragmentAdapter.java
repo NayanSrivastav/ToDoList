@@ -8,9 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class PagerTestAdapter extends FragmentPagerAdapter {
+public class TaskStageFragmentAdapter extends FragmentPagerAdapter {
 	private final int numberOfPages=3;
-	public PagerTestAdapter(FragmentManager fm) {
+	public TaskStageFragmentAdapter(FragmentManager fm) {
 		super(fm);
 	}
 

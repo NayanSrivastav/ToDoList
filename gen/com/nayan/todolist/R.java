@@ -1078,9 +1078,10 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
-        public static final int new_task=0x7f020058;
-        public static final int task_demo=0x7f020059;
+        public static final int createtask=0x7f020057;
+        public static final int ic_launcher=0x7f020058;
+        public static final int new_task=0x7f020059;
+        public static final int task_demo=0x7f02005a;
     }
     public static final class id {
         public static final int a_h_lv=0x7f090047;
@@ -1296,9 +1297,9 @@ containing a value of this type.
         public static final int action_settings=0x7f0a000f;
         public static final int app_name=0x7f0a000d;
         public static final int hello_world=0x7f0a000e;
-        public static final int no_result=0x7f0a0013;
-        public static final int title_activity_fragment_test_tab=0x7f0a0011;
-        public static final int title_activity_task_history=0x7f0a0012;
+        public static final int no_result=0x7f0a0012;
+        public static final int ok_image=0x7f0a0013;
+        public static final int title_activity_task_history=0x7f0a0011;
     }
     public static final class style {
         /** 
@@ -2684,7 +2685,7 @@ containing a value of this type.
          */
         public static final int[] MenuView = {
             0x010100ae, 0x0101012c, 0x0101012d, 0x0101012e,
-            0x0101012f, 0x01010130, 0x01010131, 0x01160055
+            0x0101012f, 0x01010130, 0x01010131, 0x0101052f
         };
         /**
           <p>
